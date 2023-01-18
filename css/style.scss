@@ -1,0 +1,978 @@
+@font-face {
+  font-family: "MaruBuri-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/MaruBuri-Regular.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+%flex-start {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+%flex-end {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+}
+
+%flex-center {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+%flex-spacebetween {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+%flex-column {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+%flex-spacearound {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+
+/* color */
+
+$bgColor: #ccd3db;
+$bgColor2: #eaebef;
+$themeColor: #003865;
+
+* {
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+/* header */
+header {
+  width: 100%;
+}
+
+.gnb-top,
+.gnb-bottom {
+  width: 100%;
+  max-width: 1450px;
+
+  margin: 0 auto;
+}
+
+.gnb-top {
+  @extend %flex-spacebetween;
+  align-items: center;
+  padding: 0 4%;
+  height: 80px;
+}
+
+.sns-icon {
+  @extend %flex-start;
+
+  a {
+    display: block;
+    margin-left: 15px;
+
+    img {
+      width: 25px;
+
+      filter: invert(0.6);
+    }
+  }
+}
+
+.main-logo {
+  img {
+    min-width: 200px;
+  }
+}
+
+.menu-btn {
+  img {
+    width: 35px;
+    cursor: pointer;
+  }
+}
+
+.gnb-bottom-wrap {
+  background-color: grey;
+}
+
+.gnb-bottom {
+  height: 60px;
+  padding: 0 10px;
+}
+
+.lnb-wrap {
+  @extend %flex-center;
+  align-items: center;
+  align-content: center;
+
+  height: 100%;
+}
+
+.lnb {
+  position: relative;
+  height: 100%;
+
+  padding: 0 5%;
+
+  a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    font-size: 17px;
+
+    color: #fff;
+  }
+
+  &:hover {
+    .lnb-title {
+      color: $themeColor;
+    }
+  }
+}
+
+.lnb-title {
+  line-height: 60px;
+  font-weight: bold;
+
+  font-family: "MaruBuri-Regular";
+}
+
+.lnb-child {
+  display: none;
+  position: absolute;
+  width: 90%;
+  top: 60px;
+  left: 20px;
+
+  background-color: #ffffff;
+
+  padding: 10px;
+
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+
+  box-shadow: 0px 8px 13px 0px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0px 8px 13px 0px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 8px 13px 0px rgba(0, 0, 0, 0.3);
+
+  z-index: 99;
+
+  a {
+    color: #000;
+    font-size: 16px;
+    padding: 15px 0;
+
+    line-height: 1;
+
+    cursor: pointer;
+  }
+
+  li {
+    &:hover {
+      a {
+        color: $themeColor;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+/* 메뉴 햄버거 클릭 */
+
+.bodyhidden {
+  overflow: hidden;
+}
+
+.hamburger-clk {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+
+  width: 100%;
+  height: 100%;
+
+  z-index: 100;
+}
+
+.hbClk-bg {
+  position: absolute;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.hbClk-list {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 25%;
+  min-width: 335px;
+  height: 100%;
+
+  background-color: $themeColor;
+}
+
+.hbClk-head {
+  width: 100%;
+  height: 140px;
+
+  background-color: #fff;
+  text-align: center;
+
+  line-height: 10;
+}
+
+.hb-icon {
+  width: 25px;
+
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.hbClk-menu {
+  width: 100%;
+  height: 100%;
+
+  padding: 20px 15px;
+}
+
+.hbClk {
+  border-top: solid 1px #aaa;
+  padding: 20px 0;
+
+  ul {
+    padding: 15px 0 0 15px;
+  }
+
+  li {
+    line-height: 1.5;
+    margin-bottom: 5px;
+
+    a {
+      position: relative;
+      font-size: 18px;
+
+      &:before {
+        content: "";
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+
+        width: 0;
+        height: 2px;
+        background: #eee;
+        transition: all 0.5s;
+      }
+    }
+
+    &:hover {
+      a {
+        color: #bbb;
+
+        &:before {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  a {
+    cursor: pointer;
+    color: #ededed;
+  }
+}
+
+.hbClk-title {
+  font-size: 20px;
+  font-family: "MaruBuri-Regular";
+
+  &:hover {
+    color: #bbb;
+  }
+}
+
+/* main content */
+
+section:nth-child(odd) {
+  background-color: $bgColor;
+}
+
+section:nth-child(even) {
+  background-color: $bgColor2;
+}
+
+.container {
+  max-width: 1450px;
+  padding: 100px 4%;
+
+  margin: 0 auto;
+}
+
+//첫번째 섹션
+
+.first-container {
+  padding-top: 0;
+}
+
+.main-page {
+  position: relative;
+
+  width: 100%;
+  height: 70vh;
+}
+
+.main-text {
+  position: absolute;
+
+  top: 25%;
+  left: 10%;
+
+  z-index: 50;
+
+  p {
+    color: #fff;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    color: #fff;
+    font-size: 48px;
+  }
+}
+.main-bg {
+  height: 100%;
+}
+
+.main-bg * {
+  height: 100%;
+}
+
+.slide-wrap {
+  width: 100%;
+
+  video {
+    width: 100%;
+    border-radius: 15px;
+
+    object-fit: cover;
+  }
+}
+
+.slick-arrow {
+  display: none;
+  position: absolute;
+  bottom: 20px;
+  z-index: 50;
+
+  font-size: 0;
+  color: transparent;
+  background-color: transparent;
+
+  width: 12px;
+  height: 12px;
+  border: solid 3px #fff;
+  transform: rotate(45deg);
+
+  cursor: pointer;
+}
+
+.slick-prev {
+  left: 42%;
+  border-top: none;
+  border-right: none;
+}
+
+.slick-next {
+  right: 42%;
+  border-bottom: none;
+  border-left: none;
+}
+
+.slick-dots {
+  @extend %flex-center;
+  position: absolute;
+
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 150px;
+  height: unset;
+
+  z-index: 50;
+
+  li {
+    border: none;
+    width: 12px;
+    height: 12px;
+    margin: 0 15px;
+
+    border-radius: 50%;
+
+    background-color: #fff;
+  }
+
+  .slick-active {
+    background-color: gray;
+  }
+
+  button {
+    background-color: transparent;
+    color: transparent;
+  }
+}
+
+// 두번째 섹션
+
+.second {
+  @extend %flex-center;
+}
+
+.sec-img {
+  width: 300px;
+
+  object-fit: contain;
+}
+
+.text-wrap {
+  margin-left: 80px;
+
+  h2 {
+    line-height: 1.5;
+    font-family: "MaruBuri-Regular";
+  }
+
+  h3 {
+    font-family: "MaruBuri-Regular";
+  }
+
+  p {
+    line-height: 1.8;
+    font-size: 18px;
+    margin: 25px 0;
+  }
+}
+
+// 세번째 섹션
+
+.title-wrap {
+  width: 60%;
+
+  h1 {
+    font-family: "MaruBuri-Regular";
+    font-size: 44px;
+    padding-bottom: 15px;
+    border-bottom: solid 1px #000;
+  }
+
+  p {
+    font-size: 20px;
+    margin-top: 30px;
+    line-height: 1.5;
+  }
+}
+
+.content-wrap {
+  @extend %flex-spacebetween;
+  margin-top: 60px;
+}
+
+.content {
+  @extend %flex-spacebetween;
+  width: 48%;
+}
+
+.content-unit {
+  width: 46%;
+
+  margin-bottom: 4%;
+
+  .unit-text {
+    width: 100%;
+
+    padding: 15px 10px;
+    margin-top: 15px;
+
+    h3 {
+      margin-bottom: 10px;
+    }
+
+    p {
+      line-height: 1.3;
+      font-size: 15px;
+    }
+  }
+}
+
+.content-img {
+  width: 100%;
+
+  img {
+    width: 100%;
+    border-radius: 15px;
+  }
+}
+
+// 네번째 메뉴
+
+.third {
+  .content-img {
+    width: 100%;
+    height: 235px;
+    text-align: center;
+
+    img {
+      width: fit-content;
+      height: 100%;
+
+      border-radius: none;
+    }
+  }
+
+  .content-unit {
+    cursor: pointer;
+
+    &:hover {
+      p {
+        &:before {
+          width: 50%;
+        }
+      }
+    }
+  }
+
+  .unit-text {
+    position: relative;
+    text-align: center;
+    width: 100%;
+
+    h2 {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    p {
+      text-align: center;
+
+      &:before {
+        content: "";
+        position: absolute;
+        bottom: 5px;
+        left: 25%;
+
+        width: 0;
+        height: 2px;
+        background: #4d4d4d;
+        transition: all 0.5s;
+      }
+    }
+  }
+}
+
+//배너
+
+.banner {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.3),
+      rgba(0, 0, 0, 0.3)
+    ),
+    url("../source/img/banner.jpg");
+
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.banner-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 18%;
+  min-width: 400px;
+
+  text-align: center;
+  color: #fff;
+
+  h2 {
+    margin: 15px 0;
+  }
+}
+
+.banner-btn {
+  background-color: #eaebef;
+  color: #000;
+  margin: 0 auto;
+  padding: 10px 15px;
+
+  width: 120px;
+
+  border-radius: 25px;
+
+  cursor: pointer;
+
+  img {
+    width: 22px;
+    height: 22px;
+    filter: invert(1);
+  }
+
+  &:hover {
+    background-color: $themeColor;
+    color: #fff;
+  }
+}
+
+.last-content-wrap {
+  @extend %flex-spacebetween;
+}
+
+.last-content {
+  width: 48%;
+}
+
+.lc-top {
+  @extend %flex-spacebetween;
+  align-items: center;
+  margin-bottom: 30px;
+  padding: 10px;
+
+  background-color: $themeColor;
+  color: #fff;
+
+  h2 {
+    font-size: 28px;
+  }
+
+  p {
+    cursor: pointer;
+  }
+}
+
+.notice-parts {
+  @extend %flex-start;
+  align-items: center;
+  cursor: pointer;
+
+  margin-bottom: 20px;
+
+  &:hover {
+    .notice-text h3,
+    .notice-text p {
+      text-decoration: underline;
+    }
+  }
+}
+
+.notice-date {
+  width: 60px;
+  height: 60px;
+
+  padding: 9px;
+  margin-right: 10px;
+
+  text-align: center;
+
+  background-color: #ddd;
+  border-radius: 20px;
+
+  p {
+    font-weight: bold;
+    color: #4d4d4d;
+  }
+
+  .date {
+    font-weight: bold;
+    font-size: 22px;
+  }
+}
+
+.notice-text {
+  width: calc(100% - 80px);
+
+  h3 {
+    line-height: 1.2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    margin-top: 10px;
+  }
+}
+
+.lc-cont-row {
+  @extend %flex-spacebetween;
+}
+
+.place {
+  width: 48%;
+
+  h2 {
+    margin-bottom: 10px;
+    line-height: 1;
+  }
+
+  img {
+    width: 100%;
+  }
+}
+
+footer {
+  background-color: $themeColor;
+
+  .container {
+    @extend %flex-spacebetween;
+  }
+}
+
+.footer-left {
+  p {
+    font-family: "MaruBuri-Regular";
+    color: #eee;
+    font-size: 38px;
+    line-height: 1.5;
+
+    margin-top: 15px;
+  }
+}
+
+.footer-logo {
+  background-color: #fff;
+  width: 215px;
+}
+
+.footer-right {
+  h2 {
+    color: #eee;
+  }
+
+  p {
+    color: #fff;
+  }
+}
+
+.footer-box {
+  margin-bottom: 30px;
+
+  h2 {
+    margin-bottom: 15px;
+  }
+
+  p {
+    line-height: 1.3;
+  }
+}
+
+@media (max-width: 1024px) {
+  .first-container {
+    width: 100%;
+    max-width: unset;
+    padding: 0;
+  }
+
+  .main-page {
+    height: calc(80vh - 100px);
+  }
+
+  .slide-wrap {
+    video {
+      border-radius: 0;
+    }
+  }
+
+  .slick-prev {
+    left: 38%;
+  }
+
+  .slick-next {
+    right: 38%;
+  }
+
+  .content-wrap {
+    flex-direction: column;
+  }
+
+  .content {
+    width: 100%;
+  }
+
+  .third {
+    .content {
+      margin-bottom: 20px;
+    }
+
+    .content-unit {
+      margin-bottom: 30px;
+    }
+  }
+
+  .last-content-wrap {
+    flex-direction: column;
+  }
+
+  .last-content {
+    width: 100%;
+
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 850px) {
+  footer {
+    .container {
+      flex-direction: column;
+    }
+  }
+
+  .footer-left {
+    margin-bottom: 40px;
+
+    p {
+      font-size: 30px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .menu-btn {
+    img {
+      width: 30px;
+    }
+  }
+
+  .sns-icon {
+    a {
+      img {
+        width: 22px;
+      }
+    }
+  }
+
+  .gnb-bottom {
+    display: none;
+  }
+
+  .slick-prev {
+    left: 25%;
+  }
+
+  .slick-next {
+    right: 25%;
+  }
+
+  .second {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .text-wrap {
+    margin: 50px 0 0;
+  }
+
+  .sec-img {
+    width: 50%;
+  }
+
+  .title-wrap {
+    width: 50%;
+    min-width: 300px;
+
+    h1 {
+      font-size: 36px;
+    }
+
+    p {
+      font-size: 17px;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .sns-icon {
+    display: none;
+  }
+
+  .main-text {
+    p {
+      font-size: 22px;
+    }
+
+    h2 {
+      font-size: 34px;
+    }
+  }
+
+  .text-wrap {
+    padding: 0 10px;
+
+    h2 {
+      font-size: 20px;
+    }
+
+    p {
+      font-size: 15px;
+    }
+
+    h2 {
+      font-size: 18px;
+    }
+  }
+
+  .content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .content-unit {
+    width: 85%;
+  }
+
+  .lc-top {
+    h2 {
+      font-size: 20px;
+    }
+  }
+
+  .notice-text {
+    h3 {
+      font-size: 18px;
+    }
+  }
+
+  .place {
+    h2 {
+      font-size: 20px;
+    }
+  }
+}
